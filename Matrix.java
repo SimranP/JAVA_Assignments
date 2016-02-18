@@ -15,14 +15,6 @@ public class Matrix {
     };
   };
 
-  private void populateWith(int num){
-    for (int r = 0; r<this.matrix.length;r++ ) {
-      for (int c = 0; c<this.matrix[0].length;c++ ) {
-      this.matrix[r][c] = num;
-      };
-    };
-  };
-
   public void enterValueAt(int row,int column,int value){//name???
     this.matrix[row][column] = value;
   };
@@ -32,9 +24,12 @@ public class Matrix {
   };
 
   public void fillMatrix(int[] a){
+    int count = 0;
     for (int r = 0; r<this.matrix.length;r++ )
-      for (int c = 0; c<this.matrix[0].length;c++ )
-      this.matrix[r][c] = a[r+c];
+      for (int c = 0; c<this.matrix[0].length;c++ ){
+        this.matrix[r][c] = a[count];
+        count++;
+      }
   };
 
   public Matrix add(Matrix m){
@@ -71,4 +66,8 @@ public class Matrix {
       };
     return result;
   };
-}
+
+  public int findDeterminant(){
+      return (this.matrix[0][0] * this.matrix[1][1]) - (this.matrix[0][1] * this.matrix[1][0]);
+  };
+};
