@@ -23,7 +23,7 @@ public class Matrix {
     };
   };
 
-  public void enter(int row,int column,int value){
+  public void enterValueAt(int row,int column,int value){//name???
     this.matrix[row][column] = value;
   };
 
@@ -32,20 +32,43 @@ public class Matrix {
   };
 
   public void fillMatrix(int[] a){
-    for (int r = 0; r<this.matrix.length;r++ ) {
-      for (int c = 0; c<this.matrix[0].length;c++ ) {
+    for (int r = 0; r<this.matrix.length;r++ )
+      for (int c = 0; c<this.matrix[0].length;c++ )
       this.matrix[r][c] = a[r+c];
-      };
-    };
   };
 
   public Matrix add(Matrix m){
     Matrix result = new Matrix(this.matrix.length,this.matrix[0].length);
-    for (int r = 0;  r< this.matrix.length; r++) {
-      for (int c = 0; c< this.matrix[0].length; c++){
-        result.enter(r,c,(this.matrix[r][c]+ m.get(r,c)));
-      }
-    }
+    for (int r = 0;  r< this.matrix.length; r++)
+      for (int c = 0; c< this.matrix[0].length; c++)
+        result.enterValueAt(r,c,(this.matrix[r][c]+ m.get(r,c)));
+    return result;
+  };
+
+  private int[] getColumn(Matrix m,int columnNumber){
+    int[] column = new int[m.matrix.length];
+    for (int i=0; i<m.matrix.length; i++)
+        column[i] = m.matrix[i][columnNumber];
+    return column;
+  };
+
+  private int multiplyRowAndColumn(int[] row,int[] column){
+    int result = 0;
+    for (int i = 0; i<row.length; i++ )
+      result = result+(row[i]*column[i]);
+    return result;
+  };
+
+  public Matrix multiply(Matrix m){
+    Matrix result = new Matrix(this.matrix.length,this.matrix.length);
+      for (int r = 0;  r< this.matrix.length; r++){
+        int[] row = this.matrix[r];
+        for (int c = 0; c<m.matrix[0].length; c++) {
+          int[] column = getColumn(m,c);
+          int product = multiplyRowAndColumn(column,row);
+          result.enterValueAt(r,c,product);
+        };
+      };
     return result;
   };
 }
