@@ -31,7 +31,21 @@ public class Matrix {
     return this.matrix[row][column];
   };
 
+  public void fillMatrix(int[] a){
+    for (int r = 0; r<this.matrix.length;r++ ) {
+      for (int c = 0; c<this.matrix[0].length;c++ ) {
+      this.matrix[r][c] = a[r+c];
+      };
+    };
+  };
+
   public Matrix add(Matrix m){
-    return new Matrix(1,1);
+    Matrix result = new Matrix(this.matrix.length,this.matrix[0].length);
+    for (int r = 0;  r< this.matrix.length; r++) {
+      for (int c = 0; c< this.matrix[0].length; c++){
+        result.enter(r,c,(this.matrix[r][c]+ m.get(r,c)));
+      }
+    }
+    return result;
   };
 }
