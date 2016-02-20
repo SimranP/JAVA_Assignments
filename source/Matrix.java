@@ -1,3 +1,4 @@
+import java.util.Arrays;
 public class Matrix {
 
   private int[][] matrix;
@@ -10,13 +11,15 @@ public class Matrix {
     this.columns = column;
   };
 
-  public void print(){
+  public String toString(){
+    String output = "";
     for (int r = 0; r<this.rows;r++ ) {
       for (int c = 0; c<this.columns;c++ ) {
-      System.out.print(this.matrix[r][c] + "  ");
+      output += this.matrix[r][c] + "  ";
       };
-      System.out.println("");
+      output += "\n";
     };
+    return output;
   };
 
   public void enterValueAt(int row,int column,int value){//name???
@@ -71,9 +74,32 @@ public class Matrix {
     return result;
   };
 
-  // private Matrix sub(int r,int c){
-  //
+  public boolean isSameAs(Matrix m){
+    return Arrays.deepEquals(this.matrix,m.matrix);
+  };
+
+  // private boolean isOrderSame(Matrix m){
+  //   return this.rows==m.rows && this.columns==m.columns;
   // };
+
+  public Matrix sub(int row,int col){
+    Matrix subMatrix = new Matrix(rows-1,columns-1);
+    int insertAtRow = 0;
+
+    for (int r =0; r<this.rows; r++) {
+      if(r!=row){
+        int insertAtCol = 0;
+        for (int c = 0; c<this.columns ; c++) {
+          if(c!=col){
+            subMatrix.enterValueAt(insertAtRow,insertAtCol,this.valueOf(r,c));
+            insertAtCol++;
+          };
+        };
+        insertAtRow++;
+      };
+    };
+      return subMatrix;
+  };
 
   private int getDeterminant(){
     return (this.matrix[0][0] * this.matrix[1][1]) - (this.matrix[0][1] * this.matrix[1][0]);

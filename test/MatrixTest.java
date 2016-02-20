@@ -136,6 +136,77 @@ public class MatrixTest{
   };
 
   @Test
+  public void isSameAs_checks_if_two_matrices_are_same(){
+    Matrix a = new Matrix(2,2);
+    a.enterValueAt(0,0,3);
+    a.enterValueAt(0,1,8);
+    a.enterValueAt(1,0,4);
+    a.enterValueAt(1,1,6);
+
+    Matrix b = new Matrix(2,2);
+    b.enterValueAt(0,0,3);
+    b.enterValueAt(0,1,8);
+    b.enterValueAt(1,0,4);
+    b.enterValueAt(1,1,6);
+
+    assertEquals(true,a.isSameAs(b));
+  };
+
+  @Test
+  public void isSameAs_checks_if_order_of_two_matrices_is_different(){
+    Matrix a = new Matrix(2,2);
+    a.enterValueAt(0,0,3);
+    a.enterValueAt(0,1,8);
+    a.enterValueAt(1,0,4);
+    a.enterValueAt(1,1,6);
+
+    Matrix b = new Matrix(1,2);
+    b.enterValueAt(0,0,3);
+    b.enterValueAt(0,1,90);
+
+    assertEquals(false,a.isSameAs(b));
+  };
+
+  @Test
+  public void isSameAs_checks_if_two_matrices_are_not_same(){
+    Matrix a = new Matrix(2,2);
+    a.enterValueAt(0,0,3);
+    a.enterValueAt(0,1,8);
+    a.enterValueAt(1,0,2);
+    a.enterValueAt(1,1,6);
+
+    Matrix b = new Matrix(2,2);
+    b.enterValueAt(0,0,3);
+    b.enterValueAt(0,1,8);
+    b.enterValueAt(1,0,4);
+    b.enterValueAt(1,1,6);
+
+    assertEquals(false,a.isSameAs(b));
+  };
+
+  @Test public void sub_gives_the_sub_matrix(){
+    Matrix a = new Matrix(3,3);
+    a.enterValueAt(0,0,1);
+    a.enterValueAt(0,1,0);
+    a.enterValueAt(0,2,2);
+    a.enterValueAt(1,0,0);
+    a.enterValueAt(1,1,3);
+    a.enterValueAt(1,2,1);
+    a.enterValueAt(2,0,7);
+    a.enterValueAt(2,1,3);
+    a.enterValueAt(2,2,4);
+
+    Matrix subMatrix = new Matrix(2,2);
+    subMatrix.enterValueAt(0,0,3);
+    subMatrix.enterValueAt(0,1,1);
+    subMatrix.enterValueAt(1,0,3);
+    subMatrix.enterValueAt(1,1,4);
+
+    Matrix b = a.sub(0,0);
+    assertEquals(subMatrix.isSameAs(a.sub(0,0)),true);
+  };
+
+  @Test
   public void find_determinant_of_a_3X3_matrix(){
     Matrix m = new Matrix(3,3);
     m.enterValueAt(0,0,3);
@@ -145,6 +216,6 @@ public class MatrixTest{
     m.enterValueAt(1,1,6);
     m.enterValueAt(1,2,1);
 
-    // assertEquals(m.findDeterminant(),-14);
+    assertEquals(m.findDeterminant(),-14);
   };
 };
