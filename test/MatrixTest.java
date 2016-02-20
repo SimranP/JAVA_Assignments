@@ -7,9 +7,9 @@ public class MatrixTest{
     Matrix m = new Matrix(4,4);
     m.enterValueAt(2,2,45);
     m.enterValueAt(3,3,99);
-    assertEquals(m.get(2,2),45);
-    assertEquals(m.get(1,1),0);
-    assertEquals(m.get(3,3),99);
+    assertEquals(m.valueOf(2,2),45);
+    assertEquals(m.valueOf(1,1),0);
+    assertEquals(m.valueOf(3,3),99);
   };
 
   @Test
@@ -17,10 +17,10 @@ public class MatrixTest{
     Matrix m = new Matrix(2,2);
     int[] values = {1,2,3,4};
     m.fillMatrix(values);
-    assertEquals(m.get(0,0),1);
-    assertEquals(m.get(0,1),2);
-    assertEquals(m.get(1,0),3);
-    assertEquals(m.get(1,1),4);
+    assertEquals(m.valueOf(0,0),1);
+    assertEquals(m.valueOf(0,1),2);
+    assertEquals(m.valueOf(1,0),3);
+    assertEquals(m.valueOf(1,1),4);
   }
 
   @Test
@@ -43,12 +43,12 @@ public class MatrixTest{
 
     Matrix sum = a.add(b);
 
-    assertEquals(sum.get(0,0),6);
-    assertEquals(sum.get(0,1),6);
-    assertEquals(sum.get(0,2),6);
-    assertEquals(sum.get(1,0),12);
-    assertEquals(sum.get(1,1),12);
-    assertEquals(sum.get(1,2),12);
+    assertEquals(sum.valueOf(0,0),6);
+    assertEquals(sum.valueOf(0,1),6);
+    assertEquals(sum.valueOf(0,2),6);
+    assertEquals(sum.valueOf(1,0),12);
+    assertEquals(sum.valueOf(1,1),12);
+    assertEquals(sum.valueOf(1,2),12);
   };
 
   @Test
@@ -61,7 +61,7 @@ public class MatrixTest{
 
     Matrix sum = a.add(b);
 
-    assertEquals(sum.get(0,0),6);
+    assertEquals(sum.valueOf(0,0),6);
   };
 
   @Test
@@ -84,10 +84,10 @@ public class MatrixTest{
 
     Matrix product = a.multiply(b);
 
-    assertEquals(product.get(0,0),0);
-    assertEquals(product.get(0,1),11);
-    assertEquals(product.get(1,0),6);
-    assertEquals(product.get(1,1),7);
+    assertEquals(product.valueOf(0,0),0);
+    assertEquals(product.valueOf(0,1),11);
+    assertEquals(product.valueOf(1,0),6);
+    assertEquals(product.valueOf(1,1),7);
   };
 
   @Test
@@ -106,10 +106,10 @@ public class MatrixTest{
 
     Matrix product = a.multiply(b);
 
-    assertEquals(product.get(0,0),0);
-    assertEquals(product.get(0,1),3);
-    assertEquals(product.get(1,0),3);
-    assertEquals(product.get(1,1),0);
+    assertEquals(product.valueOf(0,0),0);
+    assertEquals(product.valueOf(0,1),3);
+    assertEquals(product.valueOf(1,0),3);
+    assertEquals(product.valueOf(1,1),0);
   };
 
   @Test
@@ -121,17 +121,30 @@ public class MatrixTest{
     b.enterValueAt(0,0,99);
 
     Matrix product = a.multiply(b);
-    assertEquals(product.get(0,0),990);
+    assertEquals(product.valueOf(0,0),990);
   };
 
   @Test
   public void find_determinant_of_a_2X2_matrix(){
     Matrix m = new Matrix(2,2);
     m.enterValueAt(0,0,3);
-    m.enterValueAt(0,1,6);
+    m.enterValueAt(0,1,8);
     m.enterValueAt(1,0,4);
-    m.enterValueAt(1,1,8);
+    m.enterValueAt(1,1,6);
 
-    assertEquals(m.findDeterminant(),0);
+    assertEquals(m.findDeterminant(),-14);
+  };
+
+  @Test
+  public void find_determinant_of_a_3X3_matrix(){
+    Matrix m = new Matrix(3,3);
+    m.enterValueAt(0,0,3);
+    m.enterValueAt(0,1,8);
+    m.enterValueAt(0,2,2);
+    m.enterValueAt(1,0,4);
+    m.enterValueAt(1,1,6);
+    m.enterValueAt(1,2,1);
+
+    // assertEquals(m.findDeterminant(),-14);
   };
 };
