@@ -209,13 +209,16 @@ public class MatrixTest{
   @Test
   public void find_determinant_of_a_3X3_matrix(){
     Matrix m = new Matrix(3,3);
-    m.enterValueAt(0,0,3);
-    m.enterValueAt(0,1,8);
+    m.enterValueAt(0,0,1);
+    m.enterValueAt(0,1,2);
     m.enterValueAt(0,2,2);
-    m.enterValueAt(1,0,4);
-    m.enterValueAt(1,1,6);
+    m.enterValueAt(1,0,8);
+    m.enterValueAt(1,1,9);
     m.enterValueAt(1,2,1);
+    m.enterValueAt(2,0,8);
+    m.enterValueAt(2,1,0);
+    m.enterValueAt(2,2,1);
 
-    assertEquals(m.findDeterminant(),-14);
+    assertEquals(m.findDeterminant(),-135);
   };
 };

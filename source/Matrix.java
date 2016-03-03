@@ -78,10 +78,6 @@ public class Matrix {
     return Arrays.deepEquals(this.matrix,m.matrix);
   };
 
-  // private boolean isOrderSame(Matrix m){
-  //   return this.rows==m.rows && this.columns==m.columns;
-  // };
-
   public Matrix sub(int row,int col){
     Matrix subMatrix = new Matrix(rows-1,columns-1);
     int insertAtRow = 0;
@@ -98,14 +94,20 @@ public class Matrix {
         insertAtRow++;
       };
     };
+
       return subMatrix;
   };
 
-  private int getDeterminant(){
-    return (this.matrix[0][0] * this.matrix[1][1]) - (this.matrix[0][1] * this.matrix[1][0]);
-  };
-
   public int findDeterminant(){
-    return this.getDeterminant();
+    if(this.rows == 2 && this.columns == 2)
+      return (this.matrix[0][0] * this.matrix[1][1]) - (this.matrix[0][1] * this.matrix[1][0]);
+    int[] firstRow = this.matrix[0];
+    int sign = 1;
+    int d = 0;
+    for (int i = 0; i < firstRow.length; i++) {
+      d = d + (this.valueOf(0,i))*(sign * this.sub(0,i).findDeterminant());
+      sign = sign * -1;
+    };
+    return d;
   };
 };
